@@ -1,0 +1,10 @@
+require('config.lazy').setup(require('plugins'))
+
+vim.cmd('set termguicolors')
+vim.cmd('set number')
+vim.cmd('set relativenumber')
+vim.cmd('set tabstop=4')
+vim.cmd('set shiftwidth=4')
+vim.cmd('set expandtab')
+vim.cmd('set clipboard=unnamed')
+vim.cmd('colorscheme lunar')
