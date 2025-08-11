@@ -1,12 +1,4 @@
 return{
-    {
-        'neovim/nvim-lspconfig',
-        event = 'BufReadPre',
-        config = function()
-            vim.lsp.enable('clangd')
-            vim.lsp.enable('cmake')
-        end
-    },
     { 
         'nvim-treesitter/nvim-treesitter',
         build = ':TSUpdate',
@@ -22,6 +14,10 @@ return{
         'lunarvim/lunar.nvim', 
         lazy = false 
     },
+    {
+        'wadackel/vim-dogrun',
+        lazy = false
+    },
     { 
         'lukas-reineke/indent-blankline.nvim', 
         event = 'VeryLazy',
@@ -31,7 +27,7 @@ return{
     },
 	{ 
         'nvim-lualine/lualine.nvim', 
-        deps = { 'kyazdani42/nvim-web-devicons' },
+        deps = { 'nvim-tree/nvim-web-devicons' },
         opts = { theme = 'palenight' },
         lazy = false
     },
@@ -58,28 +54,10 @@ return{
         end
     },
     {
-        'tpope/vim-abolish',
-        event = 'BufReadPre'
-    },
-    {
-        'hrsh7th/nvim-cmp',
-        deps = { 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
-        event = 'BufReadPre',
+        'stevearc/oil.nvim',
+        lazy = false,
         config = function()
-            local cmp = require('cmp')
-            cmp.setup({
-                snippet = {
-                    expand = function(args)
-                        require('luasnip').lsp_expand(args.body)
-                    end
-                },
-                window = {
-                    completion = cmp.config.window.bordered()
-                },
-                sources = cmp.config.sources({
-                    { name = 'luasnip' }
-                })
-            }) 
+            require('oil').setup()
         end
     }
 }
