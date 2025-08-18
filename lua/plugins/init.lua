@@ -1,4 +1,12 @@
 return{
+    {
+        'wadackel/vim-dogrun',
+        lazy = false
+    },
+    {
+        'catppuccin/nvim',
+        lazy = false
+    },
     { 
         'nvim-treesitter/nvim-treesitter',
         build = ':TSUpdate',
@@ -11,14 +19,6 @@ return{
         end
     },
     { 
-        'lunarvim/lunar.nvim', 
-        lazy = false 
-    },
-    {
-        'wadackel/vim-dogrun',
-        lazy = false
-    },
-    { 
         'lukas-reineke/indent-blankline.nvim', 
         event = 'VeryLazy',
         config = function()
@@ -27,12 +27,13 @@ return{
     },
 	{ 
         'nvim-lualine/lualine.nvim', 
-        deps = { 'nvim-tree/nvim-web-devicons' },
+        deps = { 'kyazdani42/nvim-web-devicons' },
         opts = { theme = 'palenight' },
         lazy = false
     },
     { 
         'nvim-telescope/telescope.nvim', 
+        lazy = false,
         deps = { 'nvim-lua/plenary.nvim' },
         keys = {
             { '<leader>ff', function() require('telescope.builtin').find_files() end, desc = 'Telescope find files' },
@@ -54,10 +55,14 @@ return{
         end
     },
     {
+        'tpope/vim-abolish',
+        event = 'BufReadPre'
+    },
+    {
         'stevearc/oil.nvim',
         lazy = false,
         config = function()
-            require('oil').setup()
+	    require('oil').setup()
         end
     }
 }
