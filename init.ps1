@@ -14,7 +14,7 @@ $RequiredPackages = @(
 
 $InstalledPackages = winget list | ForEach-Object { $_.Id }
 foreach($Package in $RequiredPackages) {
-    if(-Not $InstalledPackages -contains $Package) {
+    if(-Not ($InstalledPackages -contains $Package)) {
         Write-Host -ForegroundColor Yellow "Installing Package $Package..."
         winget install --id $Package -e
     }
@@ -54,12 +54,10 @@ New-Item -ItemType Directory -Path $WindowsTerminalSettingsDir -Force | Out-Null
 $WindowsTerminalSettings = Get-Content -Path 'WindowsTerminal/settings.json' -Raw
 Set-Content -Content $WindowsTerminalSettings -Path "$WindowsTerminalSettingsDir/settings.json"
 
-# TODO
-# Update Windows Terminal to Use Font
-
 Write-Host -ForegroundColor Cyan 'Updating dotfiles...'
 . './update_dotfiles.ps1'
 
-Start-Process 'wt.exe' -ArgumentList "pwsh -NoExit -Command `"Write-Host -ForegroundColor Green '✅ Dev environment setup complete!'`""
+Write-Host -ForegroundColor Green '✅ Dev environment setup complete!'
+Read-Host 'Press any key to continue...'
 
 exit
