@@ -1,11 +1,14 @@
 return{
     {
-        'wadackel/vim-dogrun',
+        'catppuccin/nvim',
         lazy = false
     },
     {
-        'catppuccin/nvim',
-        lazy = false
+        'sainnhe/everforest',
+        lazy = false,
+        config = function()
+            vim.g.everforest_background = 'dark'
+        end
     },
     {
         'hrsh7th/nvim-cmp',
