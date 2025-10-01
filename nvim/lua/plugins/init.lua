@@ -17,7 +17,8 @@ return{
             'hrsh7th/cmp-buffer',
             'hrsh7th/cmp-nvim-lsp',
             'L3MON4D3/LuaSnip',
-            'saadparwaiz1/cmp_luasnip'
+            'saadparwaiz1/cmp_luasnip',
+            'hrsh7th/cmp-path'
         },
         config = function()
             local cmp = require('cmp')
@@ -30,31 +31,27 @@ return{
                 mapping = cmp.mapping.preset.insert({
                     ['<C-n>'] = cmp.mapping.select_next_item(),
                     ['<C-p>'] = cmp.mapping.select_prev_item(),
-                    ['<CR>'] = cmp.mapping.confirm({ selct = true })
+                    ['<CR>'] = cmp.mapping.confirm({ select = true }),
+                    ['<C-Space>'] = cmp.mapping.complete(),
+                    ['<C-e>'] = cmp.mapping.abort()
                 }),
                 sources = cmp.config.sources({
                     { name = 'nvim_lsp' },
                     { name = 'buffer' },
-                    { name = 'luasnip' }
+                    { name = 'luasnip' },
+                    { name = 'path' }
                 }),
             })
         end     
     },
     {
-        'neovim/nvim-lspconfig',
-        event = { 'BufReadPre', 'BufNewFile' },
-        config = function()
-            require('lspconfig').clangd.setup {
-                cmd = { 'clangd', '--background-index' },
-                filetypes = { 'c', 'cpp' },
-                capabilities = require('cmp_nvim_lsp').default_capabilities()
-            }
-        end
+	    'neovim/nvim-lspconfig',
+	    lazy = true
     },
     { 
         'nvim-treesitter/nvim-treesitter',
         build = ':TSUpdate',
-        event = 'BufReadPre',
+        lazy = false,
         config = function()
             require('nvim-treesitter.configs').setup({
                 highlight = { enable = true },
@@ -71,14 +68,14 @@ return{
     },
 	{ 
         'nvim-lualine/lualine.nvim', 
-        deps = { 'kyazdani42/nvim-web-devicons' },
+        dependencies = { 'kyazdani42/nvim-web-devicons' },
         opts = { theme = 'palenight' },
         lazy = false
     },
     { 
         'nvim-telescope/telescope.nvim', 
         lazy = false,
-        deps = { 'nvim-lua/plenary.nvim' },
+        dependencies = { 'nvim-lua/plenary.nvim' },
         keys = {
             { '<leader>ff', function() require('telescope.builtin').find_files() end, desc = 'Telescope find files' },
             { '<leader>fh', function() require('telescope.builtin').help_tags() end, desc = 'Telescope help tags' }
@@ -107,6 +104,48 @@ return{
         lazy = false,
         config = function()
 	    require('oil').setup()
+        end
+    },
+    {
+        'kalvinpearce/ShaderHighlight',
+        event = 'BufReadPre',
+        config = function()
+        end
+    },
+    {
+        'ThePrimeagen/harpoon',
+        lazy = false,
+        branch = 'harpoon2',
+        dependencies = { 'nvim-lua/plenary.nvim' },
+        config = function()
+            local harpoon = require('harpoon')
+            harpoon:setup({})
+
+            vim.keymap.set('n', '<leader>a', function() harpoon:list():add() end)
+            vim.keymap.set('n', '<leader>c', function() harpoon:list():clear() end)
+            vim.keymap.set('n', '<C-f>', function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+            vim.keymap.set('n', '<C-h>', function() harpoon:list():select(1) end)
+            vim.keymap.set('n', '<C-t>', function() harpoon:list():select(2) end)
+            vim.keymap.set('n', '<C-n>', function() harpoon:list():select(3) end)
+            vim.keymap.set('n', '<C-s>', function() harpoon:list():select(4) end)
+            vim.keymap.set('n', '<C-S-P>', function() harpoon:list():prev() end)
+            vim.keymap.set('n', '<C-S-N>', function() harpoon:list():next() end)
+
+            local function toggle_telescope(harpoon_files)
+                local file_paths = {}
+                for _, item in ipairs(harpoon_files.items) do
+                    table.insert(file_paths, item.value)
+                end
+
+                require("telescope.pickers").new({}, {
+                    prompt_title = "Harpoon",
+                    finder = require("telescope.finders").new_table({
+                        results = file_paths,
+                    }),
+                    previewer = conf.file_previewer({}),
+                    sorter = conf.generic_sorter({}),
+                }):find()
+            end
         end
     }
 }
