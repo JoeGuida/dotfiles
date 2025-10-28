@@ -37,7 +37,7 @@
     {
         "defaults": 
         {
-            "colorScheme": "Dark+",
+            "colorScheme": "Catppuccin Frappe",
             "font": 
             {
                 "face": "CaskaydiaCove Nerd Font"
@@ -102,9 +102,58 @@
                 "hidden": false,
                 "name": "Arch",
                 "source": "Microsoft.WSL"
+            },
+            {
+                "guid": "{8812f570-1720-5d13-be80-298e1d699682}",
+                "hidden": false,
+                "name": "Developer Command Prompt for VS 18 [Preview]",
+                "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "guid": "{cf88c396-c46f-5f4b-9ee9-3becb7bd334f}",
+                "hidden": false,
+                "name": "Developer PowerShell for VS 18 [Preview]",
+                "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "guid": "{3886384d-487c-5c23-9c9c-499cb2060dc1}",
+                "hidden": true,
+                "name": "Developer Command Prompt for VS 2022",
+                "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "guid": "{446df09f-9822-5860-a4f6-542bf829072f}",
+                "hidden": true,
+                "name": "Developer PowerShell for VS 2022",
+                "source": "Windows.Terminal.VisualStudio"
             }
         ]
     },
-    "schemes": [],
+    "schemes": 
+    [
+        {
+            "background": "#303446",
+            "black": "#232634",
+            "blue": "#8CAAEE",
+            "brightBlack": "#414559",
+            "brightBlue": "#99D1DB",
+            "brightCyan": "#85C1DC",
+            "brightGreen": "#A6D189",
+            "brightPurple": "#BABBF1",
+            "brightRed": "#EA999C",
+            "brightWhite": "#F2D5CF",
+            "brightYellow": "#EF9F76",
+            "cursorColor": "#F2D5CF",
+            "cyan": "#81C8BE",
+            "foreground": "#C6D0F5",
+            "green": "#A6D189",
+            "name": "Catppuccin Frappe",
+            "purple": "#CA9EE6",
+            "red": "#E78284",
+            "selectionBackground": "#51576D",
+            "white": "#B5BFE2",
+            "yellow": "#E5C890"
+        }
+    ],
     "themes": []
 }

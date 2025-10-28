@@ -1,51 +1,8 @@
-$POSH_DIR = "$Env:LOCALAPPDATA/Programs/oh-my-posh"
-$evim = "$Env:LOCALAPPDATA/nvim/lua/plugins/init.lua"
-$nvim = "$Env:LOCALAPPDATA/nvim"
-$repos = "$HOME/source/repos"
+$PWSH_DIR = "$HOME/Documents/PowerShell"
 
-function Delete {
-    param([string]$path)
-
-    Remove-Item -Recurse -Force $path
-}
-
-function gpom {
-    git pull origin master
-}
-
-function gpo {
-    param([string] $branch)
-
-    git pull origin $branch
-}
-
-function gp {
-    param([string] $remote,
-          [string] $branch)
-
-    git pull $remote $branch
-}
-
-function gs {
-    git status
-}
-
-function v {
-    param([string] $file=$null)
-
-    nvim $file
-}
-
-function Watch-File {
-    param([string]$file)
-
-    while($true) {
-        Clear-Host
-        Get-Content $file
-        Start-Sleep -Seconds 2
-    }
-}
+. (Join-Path $PWSH_DIR 'vars.ps1')
+. (Join-Path $PWSH_DIR 'functions.ps1')
 
 Set-PSReadLineOption -EditMode Vi
+Invoke-Expression (&starship init powershell)
 
-oh-my-posh init pwsh --config "$POSH_DIR/themes/multiverse-neon.omp.json"| Invoke-Expression
