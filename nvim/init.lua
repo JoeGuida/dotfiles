@@ -9,6 +9,15 @@ vim.lsp.config('*', {
 
 vim.lsp.enable('cpp_ls')
 
+vim.opt.list = true
+vim.opt.listchars = {
+    tab = '▷ ',
+    trail = '█',
+    extends = '◣',
+    precedes = '◢',
+    nbsp = '○'
+}
+
 vim.cmd('set termguicolors')
 vim.cmd('set number')
 vim.cmd('set colorcolumn=100')
