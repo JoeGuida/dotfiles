@@ -43,37 +43,38 @@ return{
                     { name = 'path' }
                 }),
             })
-        end     
+        end
     },
     {
 	    'neovim/nvim-lspconfig',
 	    lazy = true
     },
-    { 
+    {
         'nvim-treesitter/nvim-treesitter',
         build = ':TSUpdate',
         event = 'VeryLazy',
         config = function()
             require('nvim-treesitter.configs').setup({
+                ensure_installed = { 'cpp' },
                 highlight = { enable = true },
                 indent = { enable = true },
             })
         end
     },
-    { 
-        'lukas-reineke/indent-blankline.nvim', 
+    {
+        'lukas-reineke/indent-blankline.nvim',
         event = 'VeryLazy',
         config = function()
             require('ibl').setup()
         end
     },
-	{ 
-        'nvim-lualine/lualine.nvim', 
+	{
+        'nvim-lualine/lualine.nvim',
         dependencies = { 'kyazdani42/nvim-web-devicons' },
         opts = { theme = 'palenight' },
         lazy = false
     },
-    { 
+    {
         'MeanderingProgrammer/render-markdown.nvim',
         ft = { 'markdown', 'md' }
     },
@@ -113,14 +114,27 @@ return{
             })
         end
     },
-    { 
-        'nvim-telescope/telescope.nvim', 
+    {
+        'nvim-telescope/telescope.nvim',
         dependencies = { 'nvim-lua/plenary.nvim' },
         keys = {
-            { '<leader>f', function() require('telescope.builtin').find_files() end, desc = 'Telescope find files' },
-            { '<leader>h', function() require('telescope.builtin').help_tags() end, desc = 'Telescope help tags' }
+            { '<leader>ff', function() require('telescope.builtin').find_files() end, desc = 'Telescope find files' },
+            { '<leader>fh', function() require('telescope.builtin').help_tags() end, desc = 'Telescope help tags' }
         },
         config = function()
         end
     },
+    {
+        'kevinhwang91/nvim-ufo',
+        dependencies = 'kevinhwang91/promise-async',
+        event = 'VeryLazy',
+        config = function()
+            require('ufo').setup({
+                provider_selector = function(bufnr, filetype, buftype)
+                    return { 'treesitter', 'indent' }
+                end
+            })
+        end
+    }
 }
+
