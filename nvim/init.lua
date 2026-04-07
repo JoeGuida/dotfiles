@@ -1,2 +1,2 @@
 require('config')
-vim.cmd('colorscheme catppuccin-frappe')
+vim.cmd('colorscheme moon')
