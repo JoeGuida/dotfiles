@@ -1,2 +1,2 @@
 require('config')
-vim.cmd('colorscheme moon')
+vim.cmd('colorscheme hojicha')

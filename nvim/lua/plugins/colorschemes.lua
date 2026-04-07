@@ -12,7 +12,7 @@ return {
         config = function()
             require("neomodern").setup({
               bg = "default",
-              theme = "moon",
+              theme = "hojicha",
 
               gutter = {
                 cursorline = false,
