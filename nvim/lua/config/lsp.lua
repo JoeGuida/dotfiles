@@ -5,4 +5,4 @@ vim.lsp.config('*', {
     update_in_insert = true
 })
 
-vim.lsp.enable('cpp_ls')
+vim.lsp.enable('clangd')

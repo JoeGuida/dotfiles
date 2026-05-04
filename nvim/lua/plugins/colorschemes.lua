@@ -1,13 +1,5 @@
 return {
     {
-        'catppuccin/nvim',
-        lazy = false,
-    },
-    {
-        'sainnhe/everforest',
-        lazy = false,
-    },
-    {
         'casedami/neomodern.nvim',
         config = function()
             require("neomodern").setup({

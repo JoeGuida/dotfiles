@@ -1,2 +1,2 @@
 require('config')
-vim.cmd('colorscheme hojicha')
+vim.cmd('colorscheme gyokuro')
