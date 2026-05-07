@@ -8,5 +8,5 @@ Get-ChildItem -Path $pwsh/Scripts -Filter '*.ps1' | % {
 Set-PSReadLineOption -EditMode Vi
 
 devshell
-oh-my-posh -c $posh/themes/craver.omp.json init pwsh | Invoke-Expression
+oh-my-posh -c $posh/themes/illusi0n.omp.json init pwsh | Invoke-Expression
 
