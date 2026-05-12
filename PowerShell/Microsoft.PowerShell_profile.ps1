@@ -1,5 +1,4 @@
-$pwsh = "$HOME/Documents/PowerShell"
-$PROFILE = Join-Path $pwsh profile.ps1
+$pwsh = "C:/Users/$($env:USERNAME)/OneDrive - Microsoft/Documents/PowerShell"
 
 Get-ChildItem -Path $pwsh/Scripts -Filter '*.ps1' | % {
     Import-Module $_.FullName -Force
@@ -7,6 +6,6 @@ Get-ChildItem -Path $pwsh/Scripts -Filter '*.ps1' | % {
 
 Set-PSReadLineOption -EditMode Vi
 
-devshell
-oh-my-posh -c $posh/themes/illusi0n.omp.json init pwsh | Invoke-Expression
+$theme = 'craver'
+oh-my-posh -c "$posh/themes/$theme.omp.json" init pwsh | Invoke-Expression
 

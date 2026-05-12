@@ -11,19 +11,25 @@ function Delete {
 }
 
 function devshell {
-    Import-Module "$env:ProgramFiles\Microsoft Visual Studio\2022\Community\Common7\Tools\Microsoft.VisualStudio.DevShell.dll"
-    Enter-VsDevShell -VsInstallPath "C:\Program Files\Microsoft Visual Studio\2022\Community" -DevCmdArguments "-arch=x64" | Out-Null
+    Import-Module "$env:ProgramFiles\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\Microsoft.VisualStudio.DevShell.dll"
+    Enter-VsDevShell -VsInstallPath "C:\Program Files\Microsoft Visual Studio\2022\Enterprise" -DevCmdArguments "-arch=x64" | Out-Null
 }
 
 function bb {
     param([string]$Target)
 
+    if(-Not $DevShellLoaded) {
+        Write-CenteredLine "Loading Dev Environment"
+        devshell
+        $Global:DevShellLoaded = $true
+    }
+
     if($Target) {
-        Write-CenteredLine -ForegroundColor Yellow "Building Target: $Target"
+        Write-CenteredLine "Building Target: $Target"
         cmake -G 'Ninja' -S . -B build -DCMAKE_TOOLCHAIN_FILE="C:/vcpkg/scripts/buildsystems/vcpkg.cmake" -DCMAKE_EXPORT_COMPILE_COMMANDS=ON && cmake --build build --target $Target
     }
     else {
-        Write-CenteredLine -ForegroundColor Yellow "Building All Targets"
+        Write-CenteredLine "Building All Targets"
         cmake -G 'Ninja' -S . -B build -DCMAKE_TOOLCHAIN_FILE="C:/vcpkg/scripts/buildsystems/vcpkg.cmake" -DCMAKE_EXPORT_COMPILE_COMMANDS=ON && cmake --build build
     }
 }
@@ -76,7 +82,8 @@ function Log {
 function Write-CenteredLine {
     param(
         [string]$Text,
-        [string]$FillChar = '-'
+        [string]$FillChar = '-',
+        [string]$ForegroundColor = 'Yellow'
     )
 
     $width = $Host.UI.RawUI.WindowSize.Width / 2
@@ -94,7 +101,6 @@ function Write-CenteredLine {
     $right = [int]($remaining - $left)
 
     $line = ($FillChar * $left) + $content + ($FillChar * $right)
-    Write-Host -ForegroundColor Cyan $line
+    Write-Host -ForegroundColor $ForegroundColor $line
 }
-
 
