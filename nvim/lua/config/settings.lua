@@ -1,10 +1,12 @@
-vim.cmd('set termguicolors')
-vim.cmd('set number')
-vim.cmd('set colorcolumn=100')
-vim.cmd('set tabstop=4')
-vim.cmd('set shiftwidth=4')
-vim.cmd('set expandtab')
-vim.cmd('set clipboard=unnamed')
-vim.cmd('set autoindent')
-vim.cmd('set smartindent')
-vim.cmd('set cindent')
+vim.opt.termguicolors = true
+vim.opt.number = true
+vim.opt.colorcolumn = '100'
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+vim.opt.clipboard = 'unnamed'
+vim.opt.autoindent = true
+vim.opt.smartindent = true
+vim.opt.cindent = true
+vim.opt.cursorline = true
+

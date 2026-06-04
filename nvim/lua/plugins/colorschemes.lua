@@ -1,6 +1,7 @@
 return {
     {
         'casedami/neomodern.nvim',
+        lazy = false,
         config = function()
             require("neomodern").setup({
               bg = "default",

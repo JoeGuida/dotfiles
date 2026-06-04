@@ -1,15 +1,7 @@
 return {
-   {
-        'lukas-reineke/indent-blankline.nvim',
-        event = 'VeryLazy',
-        config = function()
-            require('ibl').setup()
-        end
-    },
-	{
+    {
         'nvim-lualine/lualine.nvim',
         dependencies = { 'kyazdani42/nvim-web-devicons' },
-        opts = { theme = 'palenight' },
         lazy = false
     },
     {
@@ -38,6 +30,18 @@ return {
                     bottom_search = true,
                     command_palette = false,
                     lsp_doc_border = true
+                }
+            })
+        end
+    },
+    {
+        'shellRaining/hlchunk.nvim',
+        event = { 'BufReadPre', 'BufNewFile' },
+        config = function()
+            require('hlchunk').setup({
+                chunk = {
+                    enable = true,
+                    style = '#799475'
                 }
             })
         end
