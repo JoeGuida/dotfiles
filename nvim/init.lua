@@ -1,2 +1,2 @@
 require('config')
-vim.cmd('colorscheme gyokuro')
+vim.cmd('colorscheme base46-chocolate')

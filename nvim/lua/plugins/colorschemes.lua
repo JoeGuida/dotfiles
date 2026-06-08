@@ -21,5 +21,13 @@ return {
 
             require("neomodern").load()
         end
+    },
+    {
+        'slugbyte/lackluster.nvim'
+    },
+    {
+        'AvengeMedia/base46',
+        lazy = true,
+        opts = {}
     }
 }
