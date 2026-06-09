@@ -9,4 +9,4 @@ vim.opt.autoindent = true
 vim.opt.smartindent = true
 vim.opt.cindent = true
 vim.opt.cursorline = true
-
+vim.o.confirm = false

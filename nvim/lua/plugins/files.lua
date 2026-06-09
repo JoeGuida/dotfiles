@@ -3,9 +3,12 @@ local function capitalize(str)
 end
 
 local function find_cmake_target(start_dir)
+    print("finding cmake target...")
     local dir = start_dir
+    local prev = nil
 
-    while dir ~= "/" do
+    while dir ~= prev do
+        prev = dir
         local cmake = dir .. "/CMakeLists.txt"
 
         if vim.fn.filereadable(cmake) == 1 then
@@ -23,6 +26,7 @@ local function find_cmake_target(start_dir)
                 end
 
                 if target then
+                    print("cmake target found")
                     return target
                 end
             end
@@ -31,6 +35,7 @@ local function find_cmake_target(start_dir)
         dir = vim.fn.fnamemodify(dir, ":h")
     end
 
+    print("no cmake target found, setting target to default: PROJECT")
     return "PROJECT"
 end
 
