@@ -5,7 +5,7 @@ return {
         lazy = false
     },
     {
-        'norcalli/nvim-colorizer.lua',
+       'norcalli/nvim-colorizer.lua',
         event = 'BufReadPre',
         config = function()
             require('colorizer').setup()
@@ -44,6 +44,19 @@ return {
                     style = '#799475'
                 }
             })
+        end
+    },
+    {
+        'folke/twilight.nvim',
+        config = function()
+            vim.keymap.set("n", "<leader>tw", "<cmd>Twilight<CR>")
+            vim.cmd('Twilight')
+        end
+    },
+    {
+        'folke/zen-mode.nvim',
+        config = function()
+            vim.keymap.set("n", "<leader>zen", "<cmd>ZenMode<CR>")
         end
     }
 }

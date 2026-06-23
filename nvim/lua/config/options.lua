@@ -5,6 +5,14 @@ local options = {
     colorcolumn = '100',
     cursorline = true,
     expandtab = true,
+    list = true,
+    listchars = {
+        tab = '▷ ',
+        trail = '_',
+        extends = '◣',
+        precedes = '◢',
+        nbsp = '○'
+    },
     number = true,
     shiftwidth = 4,
     smartindent = true,
